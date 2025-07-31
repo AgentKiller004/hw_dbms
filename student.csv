@@ -1,3 +1,6 @@
 student_id,student_pass,stu_name,class,list_comp
-16043,school@7C,ishanvi k.,12-A,[]
-1001,anup@frvr,Anup Joshi,<built-in method upper of str object at 0x0000020B76009CB0>,[]
+1601,pass_stu_1,"Amit Kumar","12-A","[]"
+1602,pass_stu_2,"Sunita Sharma","12-B","[]"
+1603,pass_stu_3,"Rohan Verma","11-A","[1]"
+1604,pass_stu_4,"Priya Singh","11-B","[2, 3]"
+1605,pass_stu_5,"Vikas Rao","12-A","[]"
