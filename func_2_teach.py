@@ -19,11 +19,10 @@ def view_homeworks(teach_data):
             return
         elif choice == '1':
             # View by class (any teacher)
-            print("\nSelect from your classes:")
-            for i, cls in enumerate(teach_classes):
-                print(f"{i+1}. {cls}")
+            
+            
             while True:
-                print("\nYour Classes:")
+                print("\nSelect from your classes:")
                 for i, cls in enumerate(teach_classes):
                     print(f"{i+1}. {cls}")
     
@@ -44,11 +43,9 @@ def view_homeworks(teach_data):
     
         elif choice == '3':
             # View assigned by me to a class
-            print("\nSelect from your classes:")
-            for i, cls in enumerate(teach_classes):
-                print(f"{i+1}. {cls}")
+            
             while True:
-                print("\nYour Classes:")
+                print("\nSelect from your classes:")
                 for i, cls in enumerate(teach_classes, start=1):
                     print(f"{i}. {cls}")
     
@@ -63,14 +60,16 @@ def view_homeworks(teach_data):
     
         else:
             print("Invalid option.")
-            return
+            
     
         # Show results
         if not results:
             print("No homework found.")
-            return
+            
     
         print("\nHomework List:")
         for srno, hw in enumerate(homeworks):
             if hw in results:
                 print(f"SR No: {srno} | Topic: {hw[0]} | Subject: {hw[1]} | Class: {hw[2]} | Due: {hw[4]} | By: {hw[3]}")
+                
+        input('pls press enter to continue')

@@ -1,5 +1,3 @@
-HomeworkID,Topic,Subject,Class,Teacher,Due
-HW001,Algebra Chapter 1,Math,10A,T01,2025-08-10
-HW002,Cellular Respiration,Biology,10A,T02,2025-08-12
-HW003,Shakespeare Sonnets,English,10B,T03,2025-08-11
-HW004,Newton's Laws of Motion,Physics,10A,T02,2025-08-15
+homework_topic,subject,class,teacher,due_date,no_of_comp
+,
+Conversion To Alcohol,Chemistry,12-A,1001,2025-08-07,0

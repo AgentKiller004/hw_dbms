@@ -20,14 +20,14 @@ def edit_homework_due_date(teacher_data):
         return
 
     print("\n Your Assigned Homework:")
-    for row in my_homeworks:
-        print(f"SR No: {row[0]} | Topic: {row[1]} | Subject: {row[2]} | Class: {row[3]} | Due: {row[4]}")
+    for i,row in enumerate(my_homeworks):
+        print(f"SR No: {i+1} | Topic: {row[1]} | Subject: {row[2]} | Class: {row[3]} | Due: {row[5]}")
 
     # Loop until valid sr no
     while True:
         try:
             srno = int(input("\nEnter SR No of homework to edit: "))
-            valid_srnos = [row[0] for row in my_homeworks]
+            valid_srnos = [i+1 for i in range(len(my_homeworks))]
             if srno in valid_srnos:
                 break
             else:
@@ -50,12 +50,13 @@ def edit_homework_due_date(teacher_data):
             homeworks = list(reader)
     
         # Check for date clash
-        clash = [hw for hw in homeworks if any(hw) and hw[2] == my_homeworks[srno][3] and hw[4] == new_due]
+        clash = [hw for hw in homeworks if any(hw) and  hw[2] == my_homeworks[srno-1][3] and hw[4] == new_due]
         if len(clash) != 0:
             print("A homework already exists for this class on that date.")
         else: break
     # Update and write back
-    homeworks[srno][4] = new_due  
+    row_no=my_homeworks[srno-1][0]
+    homeworks[row_no][4] = new_due  
     with open('homework.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(homeworks)
