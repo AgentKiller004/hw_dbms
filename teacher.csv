@@ -1,4 +1,13 @@
 teach_id,teach_pass,teach_class,subject
-101,pass_chem,"12-A,11-B",Chemistry
-202,pass_phy,"12-A,12-B",Physics
-303,pass_math,"11-A,11-B",Math
+101,pass_chem,"12-A,12-B,12-C",Chemistry
+202,pass_phy,"12-A,12-B,12-D",Physics
+303,pass_math,"12-A,12-B,11-A,11-B",Math
+404,pass_cs,"12-C,12-D,11-C,11-D",Computer Science
+505,pass_pe,"11-A,11-C,11-E,11-G,12-B,12-D,12-F,12-H",Physical Education
+606,pass_acc,"12-E,12-F,11-E,11-F",Accountancy
+707,pass_bms,"12-E,12-F,11-E,11-F",Business Studies
+808,pass_eco,"12-E,12-F,11-E,11-F",Economics
+909,pass_hist,"12-G,12-H,11-G,11-H",History
+910,pass_ps,"12-G,12-H,11-G,11-H",Political Science
+911,pass_soc,"12-G,11-G",Sociology
+912,pass_psy,"12-H,11-H",Psychology
