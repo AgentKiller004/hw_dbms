@@ -15,23 +15,38 @@ def add_user(file_name):
 
     if file_name == 'student.csv':
         class_info = input("Enter class (format: Class-Sec like 11-A): ").strip().upper()
-        row = [user_id, password, name, class_info, '[]']  # empty list for completions
+        new_row = [user_id, password, name, class_info, '[]']  # empty list for completions
 
     elif file_name == 'teacher.csv':
         classes = input("Enter classes you teach (comma-separated, e.g., 9-A,10-B): ").strip()
         subject = input("Enter subject: ").strip().title()
-        row = [user_id, password, classes, subject]
+        new_row = [user_id, password, classes, subject]
 
-    with open(file_name, 'a', newline='') as file:
+    # FIX: Read all data, append the new row, and write it all back to prevent formatting errors.
+    try:
+        with open(file_name, 'r', newline='') as file:
+            reader = csv.reader(file)
+            rows = list(reader)
+    except FileNotFoundError:
+        # If the file doesn't exist, create it with a header
+        if file_name == 'student.csv':
+            rows = [['student_id', 'student_pass', 'stu_name', 'class', 'list_comp']]
+        elif file_name == 'teacher.csv':
+            rows = [['teach_id', 'teach_pass', 'teach_class', 'subject']]
+        else:
+            rows = [] # Should not happen with current logic
+
+    rows.append(new_row)
+
+    with open(file_name, 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(row)
+        writer.writerows(rows)
 
     print(f"✅ User '{name}' with ID {user_id} added successfully.")
 
 def change_pass(file_name):
     """Changes the password for a user in the specified file."""
     try:
-        # FIX: Call strip() on the string before converting to int
         user_id = int(input("Enter your ID: ").strip())
     except ValueError:
         print("❌ Invalid ID. Please enter a number.")
@@ -52,7 +67,6 @@ def change_pass(file_name):
 
     found = False
     for i, row in enumerate(rows):
-        # Ensure row has enough columns before accessing indices
         if row and row[0] == str(user_id) and row[1] == current_pass:
             new_pass = input("Enter new password: ").strip()
             rows[i][1] = new_pass
