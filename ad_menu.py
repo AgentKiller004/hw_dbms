@@ -1,9 +1,15 @@
 import csv
 
 def add_user(file_name):
-    print(f"\n📥 Adding new user ")
+    """Adds a new student or teacher to the respective CSV file."""
+    print(f"\n📥 Adding new user to {file_name}")
 
-    user_id = int(input("Enter ID (admission/employment no.): ").strip())
+    try:
+        user_id = int(input("Enter ID (admission/employment no.): ").strip())
+    except ValueError:
+        print("❌ Invalid ID. Please enter a number.")
+        return
+
     password = input("Enter password: ").strip()
     name = input("Enter full name: ").strip().title()
 
@@ -20,22 +26,34 @@ def add_user(file_name):
         writer = csv.writer(file)
         writer.writerow(row)
 
-    print("✅ User added successfully.")
+    print(f"✅ User '{name}' with ID {user_id} added successfully.")
 
 def change_pass(file_name):
-    user_id = int(input("Enter your ID: ")).strip()
+    """Changes the password for a user in the specified file."""
+    try:
+        # FIX: Call strip() on the string before converting to int
+        user_id = int(input("Enter your ID: ").strip())
+    except ValueError:
+        print("❌ Invalid ID. Please enter a number.")
+        return
+
     current_pass = input("Enter current password: ").strip()
 
-    with open(file_name, newline='') as file:
-        reader = csv.reader(file)
-        data = list(reader)
+    try:
+        with open(file_name, 'r', newline='') as file:
+            reader = csv.reader(file)
+            data = list(reader)
+    except FileNotFoundError:
+        print(f"❌ {file_name} not found.")
+        return
 
     header = data[0]
     rows = data[1:]
 
     found = False
     for i, row in enumerate(rows):
-        if row and row[0] == user_id and row[1] == current_pass:
+        # Ensure row has enough columns before accessing indices
+        if row and row[0] == str(user_id) and row[1] == current_pass:
             new_pass = input("Enter new password: ").strip()
             rows[i][1] = new_pass
             found = True
@@ -51,6 +69,7 @@ def change_pass(file_name):
         print("❌ Incorrect ID or password.")
 
 def ad_menu():
+    """Displays the admin menu and handles admin actions."""
     while True:
         print("\n===== 🛠️ ADMIN MENU =====")
         print("1. ➕ Add Student")
@@ -74,3 +93,5 @@ def ad_menu():
             break
         else:
             print("❌ Invalid choice. Try again.")
+        
+        input('\nPress Enter to continue...')
